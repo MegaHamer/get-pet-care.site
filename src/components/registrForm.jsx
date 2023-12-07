@@ -3,23 +3,16 @@ import '../mysite.css';
 import { Link } from "react-router-dom";
 
 const registr = () =>{
-    var formdata = new FormData();
-formdata.append("name", "");
-formdata.append("phone", "");
-formdata.append("email", "");
-formdata.append("password", "");
-formdata.append("password_confirmation", "");
-formdata.append("confirm", "");
+    var formdata = new FormData(document.getElementById("form-registr"));
 
 var requestOptions = {
   method: 'POST',
-  headers: myHeaders,
   body: formdata,
   redirect: 'follow'
 };
 
-fetch("https://pets.сделай.site/api/registr", requestOptions)
-  .then(response => response.text())
+fetch("https://pets.сделай.site/api/register", requestOptions)
+  .then(response => response.json())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 }
@@ -28,14 +21,14 @@ const RegistrForm = () => {
     return (
         <div className="reg-window">
             <h2>Регистрация</h2>
-            <form className="form-reg" >
+            <form className="form-reg" id="form-registr">
                 <input name="name" className="form-control" type="text" placeholder="Имя пользователя" required />
-                <input className="form-control" type="tel" placeholder="Телефон"  required />
-                <input className="form-control" type="email" placeholder="Почта" required />
-                <input className="form-control" type="password" placeholder="Пароль" pattern="^[a-zA-Z0-9!/.,*-+()#$@;:&?]{2}$" required />
-                <input className="form-control" type="password" placeholder="Подтверждение пароля" pattern="^[a-zA-Z0-9!/.,*-+()#$@;:&?]{2}$" required />
+                <input name="phone" className="form-control" type="tel" placeholder="Телефон"  required />
+                <input name="email" className="form-control" type="email" placeholder="Почта" required />
+                <input name="password" className="form-control" type="password" placeholder="Пароль" required />
+                <input name="password_confirmation" className="form-control" type="password" placeholder="Подтверждение пароля" required />
                 <div>
-                    <input type="checkbox" id="sogl" required />
+                    <input name="confirm" type="checkbox" id="sogl" required />
                     <label htmlFor="sogl">Согласие на обработку персональных данных</label>
                 </div>
                 <p className="btn primary-color2 btn-primary m-auto" onClick={registr}>Регистрация</p>

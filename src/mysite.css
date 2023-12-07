@@ -1,0 +1,191 @@
+.carousel-item-next, .carousel-item-prev, .carousel-item.active{
+    display: flex!important;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 100%;
+    justify-content: flex-start;
+    gap:1rem;
+}
+.obrez{
+    overflow: hidden;
+}
+.carousel-indicators [data-bs-target]{
+    width: 10px!important;
+    height: 10px!important;
+    border: 1px!important;
+    border-radius: 10px;
+    filter: drop-shadow(2px 4px 6px black);
+    transition: all .6s ease-in-out!important;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    width: 2rem!important;
+    height: 2rem!important;
+    
+    background-size: 110% 102%!important;
+    background-color: gray!important;
+    border-radius: 3rem!important;
+}
+
+.carousel-control-next-icon{
+    background-position: -20%!important;
+
+}
+.carousel-control-prev-icon{
+    background-position: 120%!important;
+}
+
+.carousel-indicators .active{
+    transform: translateY(-2px);
+    width: 20px!important;
+}
+
+.carousel-description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+.carousel-description:last-child{
+    /*max-height: 100px;*/
+    overflow: hidden;
+}
+
+.slider-returned-pets-img{
+    max-height: 100%;
+    min-width: 40%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.slider-returned-pets-img img{
+    height: 418px;
+}
+.carousel-inner{
+    height: 100%;
+    
+}
+@container sll (height>420px){
+    .carousel-inner{
+        background-color: rebeccapurple!important;
+    }
+}
+
+#carouselExampleCaptions{
+    height: 450px;
+    width: 90%;
+    container: sll /inline-size;
+    margin-bottom: 0.5rem!important;
+}
+.carousel-description-over{
+    width: auto;
+    font-size: 2rem;
+}
+.primary-color{
+    background-color: #009999!important;
+}
+.primary-color2{
+    background-color: #33CCCC!important;
+}
+.secondary-color{
+    background-color:#FFAA00;
+}
+.thirdy-color{
+    background-color: #FF0000;
+}
+.row {
+    margin: auto!important;
+    width: 90%!important;
+}
+
+.card-img-top{
+    max-height: 300px;
+}
+.card-img-top1{
+    max-height: 300px;
+    max-width: 300px;
+}
+.card-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+
+.sub{
+    margin-top: 0.5em!important;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+}
+.sub p{
+    margin: 0!important;
+}
+.sub-form{
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
+}
+.sub-form button{
+    width: auto!important;
+}
+footer{
+    min-height: 200px;
+    background-color: #BF7130;
+}
+
+.form-reg{
+    display: flex;
+    flex-direction: column;
+    
+    gap: 0.5rem;
+}
+.form-reg button{
+    width: 200px;
+}
+.reg-window{
+    width: 60%;
+    margin: auto;
+    margin-bottom: 1rem!important;
+}
+.reg-add-pet > summary{
+    /*list-style: none;*/
+}
+.row-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.carousel-pet{
+    height: 300px;
+}
+.carousel-pet img{
+    height: 100%;
+}
+.slider-pet.active{
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
+}
+.reg-a{
+    color: red;
+    text-decoration: none;
+}
+.btn-cardd{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.btn-cardd a{
+    width: 100%;
+}
+.change-user{
+    position:absolute;
+    right: 50%;
+    bottom:15%;
+    transform: translate(50%, 50%);
+}

@@ -5,48 +5,22 @@ import cat1 from '../img/animals/cat1.png';
 import cat2 from '../img/animals/cat2.png';
 import '../mysite.css';
 import Slide from "./slide";
+import Spiner from "./spiner";
 
 
 
 const MainSlider = () => {
-    const slide1={
-        img:dog1,
-        alt:'dog',
-        title:'Нашли собаку! Ул. Рокоссовского, 20',
-        text:'Cобака, возраст более шести лет, беспородная.',
-        active: true
-    }
-    const slide2={
-        img:cat1,
-        alt:'cat',
-        title:'Кошка найдена: ул. Советской Армии',
-        text:'Кот белого цвета с серыми пятнами. Очень ласковый, пухлый, тянется к людям. Прибился к офисному зданию в поисках тепла.',
-        active: false
-    }
-    const slide3={
-        img:cat2,
-        alt:'cat',
-        title:'Нашли кошку: Камская ул., 37',
-        text:'Рыжий окрас,возраст 3 года',
-        active: false
-    }
-    const slide4={
-        img:dog2,
-        alt:'dog',
-        title:'Найден пёс: Новое Кюмлено, СПб',
-        text:'Здравствуйте Всеволожский район Посёлок новое Кюмлено Город :Санкт-Петербург Найден пёс Прибился к дому , в сильную метель Скорее всего Швейцарская овчарка Хозяева , откликнитесь Ошейника нет Виктория https://vk.com/starnoita',
-        active: false
-    }
-
+    
     function request(pets,setPets){
 
         let reqiestOptions = {
             method:'GET'
         };
+
         fetch("https://pets.сделай.site/api/pets/slider",reqiestOptions)
         .then (response=>response.json())
         .then (response=>setPets(response))
-        /*.then(()=>{document.getElementById('download').style.display='none'})*/
+        .then(()=>{document.getElementById('spiner').style.display='none'})
     }
 
     const [pets,setPets] = useState({data: {pets: [] } });
@@ -73,6 +47,7 @@ const MainSlider = () => {
             </div>
             <div className="carousel-inner">
                 {slides}
+                <Spiner/>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>

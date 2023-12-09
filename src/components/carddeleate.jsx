@@ -12,8 +12,8 @@ const CardDel = (props) => {
                         <h5 className="card-title">{props.data.title}</h5>
                         <p className="card-text">{props.data.text} Для связи : {props.data.tel}, {props.data.name}, {props.data.email}</p>
                         <div className="btn-cardd">
-                            <Link to={"/cabinet"} className="btn btn-primary primary-color2">Изменить</Link>
-                            <Link to={"/cabinet"} className="btn btn-primary primary-color2">Удалить</Link>
+                            <Link to={"/cabinet"} className="btn btn-primary primary-color2 text-break">Изменить</Link>
+                            <Link to={"/cabinet"} className="btn btn-primary primary-color2 text-break">Удалить</Link>
                         </div>
                     </div>
                 </div>

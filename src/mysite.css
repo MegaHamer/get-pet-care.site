@@ -179,13 +179,24 @@ footer{
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 .btn-cardd a{
-    width: 100%;
+    flex-grow: 1;
 }
 .change-user{
     position:absolute;
     right: 50%;
     bottom:15%;
     transform: translate(50%, 50%);
+}
+
+.rowUser{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.imgPen{
+    width: 1.5rem;
+    height: 1.5rem;
 }

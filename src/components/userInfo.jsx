@@ -1,9 +1,12 @@
-import { useState } from 'react';
-import ava3 from '../img/ava3.webp'
-import pen from "../img/pen.png"
+import { useEffect, useState } from 'react';
+import pen from "../img/pen.png";
 import ModalWin from './modalWindow';
+import { useNavigate } from 'react-router-dom';
+import Modal from 'bootstrap/js/dist/modal';
 
 const UserInfo = (props) => {
+
+    const navigate = useNavigate();
 
     var timeDiff = Math.abs(new Date().getTime() - new Date(props.data.registrationDate).getTime());
     var days = Math.floor(timeDiff / (1000 * 3600 * 24));
@@ -11,15 +14,44 @@ const UserInfo = (props) => {
     const [modalHeader, setModalHeader] = useState("");
     const [modalType, setModalType] = useState("txt");
     const [modalText, setModalText] = useState("");
-    const [field, serField] = useState("")
+    const [field, serField] = useState("");
+    const [inpValue, setInpValue] = useState("");
 
-    function changeInfo (field,text,head){
+    function changeInfo(field, text, head) {
         setModalHeader(head);
         setModalType("input");
         setModalText(text);
-        serField(field)
+        serField(field);
+        setInpValue(props.data[field]);
+        showModal(true);
+        console.log(props.data[field])
     }
-    
+
+    let clearToken = (() => {
+        localStorage.setItem("token", "");
+        console.log("clear");
+        //window.location.reload();
+        navigate("/login");
+    })
+
+    const [myModal, setMyModal] = useState();
+    function showModal(show) {
+        if (myModal._isShown) {
+            myModal.hide();
+        }
+        else {
+            myModal.show();
+            
+        }
+    }
+
+    /*useEffect(() => { setMyModal(new Modal(document.getElementById("Modal")));
+    let myModall = document.getElementById("Modal");
+    myModall.addEventListener('shown.bs.modal', function (event) {
+        //setInpValue(props.data[field]);
+        console.log(props.data[field]);
+        console.log(document.getElementById("email"))
+    }) }, [])*/
 
     return (
         <div className="row">
@@ -32,7 +64,9 @@ const UserInfo = (props) => {
                 </div>
 
             </div>*/}
-            <div >
+            <div style={{ "display": "flex", "flexDirection": "column", "gap": "0.5rem" }}>
+
+                <button onClick={() => clearToken()} className="btn btn-primary primary-color2" style={{ "alignSelf": "flex-end" }}>Выйти</button>
                 <div className="card mb-4" style={{ "height": "94%" }}>
                     <div className="card-body">
                         <div className="row" style={{ "align-items": "center" }}>
@@ -50,7 +84,7 @@ const UserInfo = (props) => {
                             </div>
                             <div className="col-sm-8 rowUser">
                                 <p className="text-muted mb-0  text-break">{props.data.email}</p>
-                                <img data-bs-toggle="modal" onClick={()=>changeInfo("email","Почта","Меняем почту")} data-bs-target="#Modal" className='imgPen' src={pen} />
+                                <img onClick={() => { changeInfo("email", "Почта", "Меняем почту") }} className='imgPen' src={pen} />
                             </div>
                         </div>
                         <hr />
@@ -60,7 +94,7 @@ const UserInfo = (props) => {
                             </div>
                             <div className="col-sm-8 rowUser">
                                 <p className="text-muted mb-0  text-break">{props.data.phone}</p>
-                                <img data-bs-toggle="modal" onClick={()=>changeInfo("phone","Телефон","Меняем телефон")} data-bs-target="#Modal" className='imgPen' src={pen} />
+                                <img onClick={() => changeInfo("phone", "Телефон", "Меняем телефон")} data-bs-target="#Modal" className='imgPen' src={pen} />
                             </div>
                         </div>
                         <hr />
@@ -77,7 +111,7 @@ const UserInfo = (props) => {
                 </div>
 
             </div>
-            <ModalWin header={modalHeader} type={modalType} text_body={modalText} idd={field} />
+            <ModalWin header={modalHeader} inpvalue={inpValue} type={modalType} text_body={modalText} idd={field} update={props.update} show={showModal} />
         </div>
     );
 }

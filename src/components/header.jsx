@@ -18,7 +18,7 @@ const Header = () =>{
                         current="page" href="index.html">Главная</Link>
 					</li>
 					<li className="nav-item">
-						<Link to={'/cabinet'} className="nav-link" href="cabinet.html">Личный кабинет</Link>
+						<Link to={localStorage.getItem("token")==""?"/login":'/cabinet'} className="nav-link" href="cabinet.html">Личный кабинет</Link>
 					</li>
 					<li className="nav-item">
 						<Link to={'/registr'} className="nav-link active" href="registr.html">Регистрация</Link>

@@ -4,10 +4,13 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import Pagination from "../components/pagination";
 import UserInfo from "../components/userInfo";
+import { useNavigate } from "react-router-dom";
 
 const Cabinet = () => {
 
     const [info,setInfo] = useState ({})
+
+    const navigate = useNavigate();
 
     function enter() {
 
@@ -25,6 +28,11 @@ const Cabinet = () => {
             .then(result => {
                 console.log(result)
                 setInfo(result)
+                if ("error" in result){
+                    //window.location.reload();
+                    navigate("/login");
+                    
+                }
             })
             .catch(error => console.log('error', error));
     }
@@ -38,7 +46,7 @@ const Cabinet = () => {
                 <section style={{ "backgroundColor": "#eee" }}>
                     <div className="container py-5">
                         <div className="row">
-                            <UserInfo data={info} />
+                            <UserInfo data={info} update={enter} />
                             <h2 className="row">Размещенные объявления</h2>
                             <CabinSpaget />
                             <Pagination />

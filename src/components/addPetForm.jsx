@@ -1,4 +1,9 @@
+import { useState } from "react";
+
 const AddPetForm = () => {
+
+    const [regOpen, setRegOpen] = useState(false);
+
     return (
         <div className="reg-window">
             <h2>Добавить объявление</h2>
@@ -6,14 +11,18 @@ const AddPetForm = () => {
                 <input className="form-control" type="text" placeholder="Имя" pattern="^[а-яА-Я -]{18}" required="" />
                 <input className="form-control" type="tel" placeholder="Телефон" pattern="^(+)?[0-9]{11}$" required="" />
                 <input className="form-control" type="email" placeholder="Почта" required="" />
-                <details className="reg-add-pet">
-                    <summary>
-                        <strong>Регистрация</strong>
-                    </summary>
-                    <div className="form-reg">
-                        <input className="form-control" type="password" placeholder="Пароль" pattern="^[a-zA-Z0-9!/.,*-+()#$@;:&amp;?]{2}$" required="" />
-                        <input className="form-control" type="password" placeholder="Подтверждение пароля" pattern="^[a-zA-Z0-9!/.,*-+()#$@;:&amp;?]{2}$" required="" />
-                    </div>
+                <details className="reg-add-pet" >
+                            <summary onClick={() => setRegOpen(!regOpen)}>
+                                <strong>Регистрация</strong>
+                            </summary>
+                    {regOpen &&
+                        (<div>
+                            <div className="form-reg">
+                                <input className="form-control" type="password" placeholder="Пароль" pattern="^[a-zA-Z0-9!/.,*-+()#$@;:&amp;?]{2}$" required="" />
+                                <input className="form-control" type="password" placeholder="Подтверждение пароля" pattern="^[a-zA-Z0-9!/.,*-+()#$@;:&amp;?]{2}$" required="" />
+                            </div>
+                        </div>)
+                    }
                 </details>
                 <div className="mb-3">
                     <label htmlFor="formFile1" className="form-label">Изображения</label>

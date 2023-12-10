@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../mysite.css';
 import { Link } from "react-router-dom";
 import ModalWin from "./modalWindow";
-
+import { useNavigate } from "react-router-dom";
+import Modal from 'bootstrap/js/dist/modal';
 
 const LoginForm = () => {
 
-    const [modalHeader, setModalHeader] = useState("");
+    const navigate = useNavigate();
+
+    const [modalHeader, setModalHeader] = useState("Ошибка");
     const [modalType, setModalType] = useState("txt");
-    const [modalText, setModalText] = useState("");
+    const [modalText, setModalText] = useState("Не все поля заполнены верно");
+
 
     const login = (e) => {
 
         e.preventDefault();
 
-        var formdata = new FormData(document.getElementById("form-login"));
+        console.log("button click")
+
+        if(document.getElementById("form-login").classList.contains('was-validated'))
+
+        {var formdata = new FormData(document.getElementById("form-login"));
 
         var requestOptions = {
             method: 'POST',
@@ -31,41 +39,82 @@ const LoginForm = () => {
                     setModalHeader("Успех");
                     setModalText("Вы вошли. Ваш токен: " + localStorage.getItem("token"));
                     setModalType("txt");
+                    let myModal = document.getElementById("Modal")
+                    myModal.addEventListener('hidden.bs.modal', function (event) {
+                        navigate("/cabinet")
+                    })
                 }
                 else
-                    if (result.error.code == 401) {
-                        setModalHeader("Ошибка");
-                        setModalText("Почта или пароль неправильные");
-                        setModalType("txt");
-                    }
-                    else if (result.error.code == 422) {
-                        setModalHeader("Ошибка");
-                        setModalText("Не все поля заполнены верно");
-                        setModalType("txt");
-                    }
+                if (result.error.code === 401) {
+                    setModalHeader("Ошибка");
+                    setModalText("Почта или пароль неправильные");
+                    setModalType("txt");
+                }
+                else if (result.error.code === 422) {
+                    setModalHeader("Ошибка");
+                    setModalText("Не все поля заполнены верно");
+                    setModalType("txt");
+                }
+                showModal(true);
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.log('error', error));}
     }
+
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+    const [myModal,setMyModal] = useState(/*new Modal (document.getElementById("Modal"))*/);
+    function showModal (show){
+        if (show){
+            myModal.show();
+        }
+        else{
+            myModal.hide();
+
+            /*let gg = new Modal.getOrCreateInstance(do)
+            $("#Modal").modal({backdrop:true})*/
+        }
+    }
+    useEffect(()=>{setMyModal(new Modal (document.getElementById("Modal")))},[])
 
     return (
         <div className="reg-window">
             <h2>Вход</h2>
-            <form className="form-reg" id="form-login" onSubmit={login}>
+            <form className="form-reg needs-validation" id="form-login" onSubmit={login} noValidate>
                 <input name="email" className="form-control" type="email" placeholder="Почта" required />
-                <input name="password" className="form-control" type="password" placeholder="Пароль" required />
+                <input name="password" className="form-control" type="password" placeholder="Пароль" required pattern="(?=^.{7,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
+                <div class="invalid-feedback">
+                    Пароль состоит не менее из 7 символов. Обязательно должны присутствовать 1 цифра, 1 строчная, 1 зашлваная буквы.
+                </div>
                 <div style={{ "display": "flex" }}>
                     <p>Забыли пароль?</p><Link to={"/"} className="reg-a">Восстановить</Link>
                 </div>
                 {
-                /*
-                   <div>
-                    <input type="checkbox" id="sogl" required />
-                    <label htmlFor="sogl">Согласие на обработку персональных данных</label>
-                </div>
-                */
+                    /*
+                       <div>
+                        <input type="checkbox" id="sogl" required />
+                        <label htmlFor="sogl">Согласие на обработку персональных данных</label>
+                    </div>
+                    */
                 }
 
-                <button className="btn primary-color2 btn-primary m-auto" data-bs-toggle="modal" data-bs-target="#Modal" >Регистрация</button>
+                <button className="btn primary-color2 btn-primary m-auto"  data-bs-target="#Modal" >Вход</button>
             </form>
             <div style={{ "display": "flex" }}>
                 <p>Еще не зарегистрировались? </p><Link to={"/registr"} className="reg-a">Регистрация</Link>

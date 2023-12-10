@@ -1,13 +1,89 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Modal from 'bootstrap/js/dist/modal';
+import { type } from "@testing-library/user-event/dist/type";
+
+
 const ModalWin = (props) => {
+    const navigate = useNavigate();
 
+    
 
+    const [inputt,setInputt] = useState(props.inpvalue);
 
-    let bodys = props.type == "input" ? <form> <input className="form-control" id={props.idd} type="text" name="" placeholder={props.text_body}/></form> : props.type == "txt" ? props.text_body : "";
+    let innn = props.inpvalue
+
+    const submt = ((e)=>{
+        e.preventDefault();
+        changeUser();
+    }
+    )
+
+    function changeUser (){
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+        var requestOptions = {
+            method: 'PATCH',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        let inputValue = document.getElementById(props.idd).value;
+       
+        fetch("https://pets.сделай.site/api/users/"+props.idd+"?"+props.idd+"="+inputValue, requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                if ('error' in result){
+                    //ошибка
+                }
+                else 
+                if ('data' in result){
+                    //прошло
+                    //setInputt("");
+                    
+                    let upd = props.update;
+                    upd();
+                    let show = props.show
+                    show()
+                    
+                    //navigate('/cabinet',)
+                }
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+    let bodys = props.type === "input" ? <form className="needs-validation input-group" onSubmit={submt} id="changeForm" noValidate> 
+    <input pattern={props.idd=="phone" ? "^[\+]?[0-9]{1,12}$":""} aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} value={inputt} onChange={(e)=>setInputt(e.target.value)} className="form-control" id={props.idd} name={props.idd} placeholder={props.text_body} required/>
+    <button className="btn btn-outline-secondary" type="submit" id="inputGroupText">Сохранить изменения</button>
+    </form> : props.type === "txt" ? props.text_body : "";
     
     let buttons = <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-        {props.type=='input' ? <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Сохранить изменения</button> :""}
+        <button type="submit" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        {/*props.type==='input' ? <button form="changeForm" onClick={()=>changeUser()} type="button" className="btn btn-primary">Сохранить изменения</button> :""*/}
     </div>;
+    
 
     return (
         <div>
@@ -18,7 +94,7 @@ const ModalWin = (props) => {
             }
 
 
-            <div className="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div className="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">

@@ -65,10 +65,10 @@ const Sub = () => {
             <form id="subscribe" onSubmit={subscribe} className="sub-form needs-validation" noValidate>
                 <p>Введите адрес электронной почты</p>
                 <input name="email" className="form-control me-2" type="email" placeholder="Почта" aria-label="Search" required />
-                <div class="invalid-feedback">
+                <div className="invalid-feedback">
                     Введите правильную почту
                 </div>
-                <div class="valid-feedback">
+                <div className="valid-feedback">
                     {answer}
                 </div>
                 <button className="btn btn-primary primary-color2" type="submit">Подписаться</button>

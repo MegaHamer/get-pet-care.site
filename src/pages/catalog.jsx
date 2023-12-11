@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import Pagination from "../components/pagination";
 import SearchSpaget from "../components/searchSpaget";
+import { useParams } from "react-router-dom";
 
 const Catalog = () => {
 
@@ -34,11 +35,20 @@ const Catalog = () => {
 
     console.log(cards)
 
+    //pagination
+
+    const err = useParams(); //[page,(query)]
+
+    console.log(err);
+
+
+
+
     return (
         <div>
             <Header />
             <main>
-                <section style={{ "background-color": "#eee" }}>
+                <section style={{ "backgroundColor": "#eee" }}>
                     <div className="container py-5">
                         <div className="row">
                             <div className="row">
@@ -48,9 +58,9 @@ const Catalog = () => {
                                     <p className="btn primary-color2 btn-primary m-auto" onClick={search}>Поиск</p>
                                 </form>
                             </div>
-                            <h2 class="row">Размещенные объявления</h2>
+                            <h2 className="row">Размещенные объявления</h2>
                             <SearchSpaget cards={cards} />
-                            <Pagination />
+                            <Pagination countCards={cards.length} paginCount={6} activePage={err.page}/>
                         </div>
                     </div>
                 </section>

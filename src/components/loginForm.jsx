@@ -99,7 +99,7 @@ const LoginForm = () => {
             <form className="form-reg needs-validation" id="form-login" onSubmit={login} noValidate>
                 <input name="email" className="form-control" type="email" placeholder="Почта" required />
                 <input name="password" className="form-control" type="password" placeholder="Пароль" required pattern="(?=^.{7,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
-                <div class="invalid-feedback">
+                <div className="invalid-feedback">
                     Пароль состоит не менее из 7 символов. Обязательно должны присутствовать 1 цифра, 1 строчная, 1 зашлваная буквы.
                 </div>
                 <div style={{ "display": "flex" }}>

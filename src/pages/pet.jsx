@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import PetDescription from "../components/descriptPet";
 import Footer from "../components/footer";
 import Header from "../components/header";
@@ -8,15 +8,14 @@ import { useEffect, useState } from "react";
 
 const Pet = () => {
 
-    let locale = useLocation();
+    const err = useParams();
     
     function loadInfo() {
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
         };
-
-        fetch("https://pets.сделай.site/api/pets/"+locale.state, requestOptions)
+        fetch("https://pets.сделай.site/api/pets/"+err.id, requestOptions)
             .then(response => response.json())
             .then(result => {
                 setInfo(result);

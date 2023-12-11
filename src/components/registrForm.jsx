@@ -57,7 +57,7 @@ const RegistrForm = () => {
                         })
                     }
                     else
-                        if (resulte == 401) {
+                        if (result == 401) {
                             setModalHeader("Ошибка");
                             setModalText("Почта или пароль неправильные");
                             setModalType("txt");

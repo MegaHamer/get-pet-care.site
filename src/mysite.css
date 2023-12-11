@@ -166,10 +166,9 @@ footer{
 .carousel-pet img{
     height: 100%;
 }
-.slider-pet.active{
-    display: flex!important;
-    justify-content: center;
-    align-items: center;
+.slider-pet{
+    justify-content: center!important;
+    align-items: center!important;
 }
 .reg-a{
     color: red;
@@ -181,7 +180,7 @@ footer{
     gap: 1rem;
     flex-wrap: wrap;
 }
-.btn-cardd a{
+.btn-cardd button{
     flex-grow: 1;
 }
 .change-user{

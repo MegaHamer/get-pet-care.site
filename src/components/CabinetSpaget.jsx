@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../mysite.css';
 import CardDel from "./carddeleate";
 import img2 from '../img/animals/puppy.png';
@@ -63,14 +63,38 @@ const CabinSpaget = () => {
         name:'Абрам',
         email:''
     }
+
+    function loadUserCards(pets,setPets){
+
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders
+        };
+        fetch("https://pets.сделай.site/api/users/orders", requestOptions)
+        .then (response=>response.json())
+        .then (response=>{
+            setPets(response)
+            console.log(pets)
+        })
+    }
+    
+
+    const [pets,setPets] = useState({data: {orders: [] } });
+    
+    useEffect(()=>loadUserCards(pets,setPets),[])
+
+    
+
+    const cards = pets.data.orders.map((pet,index)=>{ 
+        return <CardDel data={pet}/>
+    })
+
     return (
         <div className="row row-cols-1 row-cols-md-3 g-4">
-            <CardDel data={card1}/>
-            <CardDel data={card2}/>
-            <CardDel data={card3}/>
-            <CardDel data={card4}/>
-            <CardDel data={card5}/>
-            <CardDel data={card6}/>
+            {cards}
         </div>
     );
 };

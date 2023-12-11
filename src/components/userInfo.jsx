@@ -24,7 +24,12 @@ const UserInfo = (props) => {
         serField(field);
         setInpValue(props.data[field]);
         showModal(true);
-        console.log(props.data[field])
+        console.log(props.data[field]);
+        
+        setTimeout(() => {
+            document.getElementById("modalInput").value=props.data[field];
+            document.getElementById("changeForm").classList.remove("was-validated");
+        }, 1);
     }
 
     let clearToken = (() => {
@@ -45,13 +50,13 @@ const UserInfo = (props) => {
         }
     }
 
-    /*useEffect(() => { setMyModal(new Modal(document.getElementById("Modal")));
-    let myModall = document.getElementById("Modal");
-    myModall.addEventListener('shown.bs.modal', function (event) {
+    useEffect(() => { setMyModal(new Modal(document.getElementById("Modal")));
+    /*let myModall = document.getElementById("Modal");
+    myModall.addEventListener('show.bs.modal', function (event) {
         //setInpValue(props.data[field]);
         console.log(props.data[field]);
         console.log(document.getElementById("email"))
-    }) }, [])*/
+    }) */}, [])
 
     return (
         <div className="row">
@@ -69,7 +74,7 @@ const UserInfo = (props) => {
                 <button onClick={() => clearToken()} className="btn btn-primary primary-color2" style={{ "alignSelf": "flex-end" }}>Выйти</button>
                 <div className="card mb-4" style={{ "height": "94%" }}>
                     <div className="card-body">
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Имя пользователя</p>
                             </div>
@@ -78,7 +83,7 @@ const UserInfo = (props) => {
                             </div>
                         </div>
                         <hr />
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Почта</p>
                             </div>
@@ -88,7 +93,7 @@ const UserInfo = (props) => {
                             </div>
                         </div>
                         <hr />
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Телефон</p>
                             </div>
@@ -98,7 +103,7 @@ const UserInfo = (props) => {
                             </div>
                         </div>
                         <hr />
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Дней с нами</p>
                             </div>

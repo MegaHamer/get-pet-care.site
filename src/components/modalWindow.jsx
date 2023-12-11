@@ -29,7 +29,7 @@ const ModalWin = (props) => {
             redirect: 'follow'
         };
 
-        let inputValue = document.getElementById(props.idd).value;
+        let inputValue = document.getElementById("modalInput").value;
        
         fetch("https://pets.сделай.site/api/users/"+props.idd+"?"+props.idd+"="+inputValue, requestOptions)
             .then(response => response.json())
@@ -75,7 +75,8 @@ const ModalWin = (props) => {
     })()
 
     let bodys = props.type === "input" ? <form className="needs-validation input-group" onSubmit={submt} id="changeForm" noValidate> 
-    <input pattern={props.idd=="phone" ? "^[\+]?[0-9]{1,12}$":""} aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} value={inputt} onChange={(e)=>setInputt(e.target.value)} className="form-control" id={props.idd} name={props.idd} placeholder={props.text_body} required/>
+    {props.idd=="phone"? <input pattern="^[\+]?[0-9]{1,12}$" aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue} onChange={(e)=>setInputt(e.target.value)} className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>:
+    <input aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue} onChange={(e)=>setInputt(e.target.value)} className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>}
     <button className="btn btn-outline-secondary" type="submit" id="inputGroupText">Сохранить изменения</button>
     </form> : props.type === "txt" ? props.text_body : "";
     
@@ -94,7 +95,7 @@ const ModalWin = (props) => {
             }
 
 
-            <div className="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
+            <div className="modal fade" id="Modal" tabIndex="-1" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">

@@ -41,7 +41,7 @@ const LoginForm = () => {
                     setModalType("txt");
                     let myModal = document.getElementById("Modal")
                     myModal.addEventListener('hidden.bs.modal', function (event) {
-                        navigate("/cabinet")
+                        navigate("/cabinet/"+localStorage.getItem("token"))
                     })
                 }
                 else

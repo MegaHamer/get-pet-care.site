@@ -18,7 +18,7 @@ const Header = () =>{
                         current="page" href="index.html">Главная</Link>
 					</li>
 					<li className="nav-item">
-						<Link to={localStorage.getItem("token")==""?"/login":'/cabinet'} className="nav-link" href="cabinet.html">Личный кабинет</Link>
+						<Link to={localStorage.getItem("token")==""?"/login":'/cabinet/'+localStorage.getItem("token")} className="nav-link" href="cabinet.html">Личный кабинет</Link>
 					</li>
 					<li className="nav-item">
 						<Link to={'/registr'} className="nav-link active" href="registr.html">Регистрация</Link>
@@ -27,7 +27,7 @@ const Header = () =>{
 						<Link to={'/addpet'} className="nav-link" href="addpet.html">Добавить объявление</Link>
 					</li>
 					<li className="nav-item">
-						<Link to={'/catalog'} className="nav-link" href="#">Поиск по объявлениям</Link>
+						<Link to={'/catalog/1'} className="nav-link" href="#">Поиск по объявлениям</Link>
 					</li>
 					</ul>
 					<form className="d-flex">

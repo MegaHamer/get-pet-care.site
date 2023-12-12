@@ -45,7 +45,7 @@ const Cabinet = () => {
             <main>
                 <section style={{ "backgroundColor": "#eee" }}>
                     <div className="container py-5">
-                        <div className="row">
+                        <div className="">
                             <UserInfo data={info} update={enter} />
                             <h2 className="row">Размещенные объявления</h2>
                             <CabinSpaget />

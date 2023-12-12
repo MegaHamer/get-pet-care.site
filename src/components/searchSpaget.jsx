@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import Card from "./card";
 
 const SearchSpaget = (props) => {
+    //[cards, paginCount, activePage]
+
+    let cards = props.cards;
+    let pagin = Number(props.paginCount);
+    let actPage =Number(props.activePage);
+
+    let totalCards = cards.slice((actPage-1)*pagin,actPage*pagin);
+
     /*function request(pets, setPets) {
 
         let requestOptions = {
@@ -26,8 +34,8 @@ const SearchSpaget = (props) => {
     console.log(cards)*/
 
     return (
-        <div className="row row-cols-1 row-cols-md-3 g-4" id="search-content">
-            {props.cards}
+        <div className="row row-cols-1 row-cols-md-3 py-3" id="search-content">
+            {totalCards}
         </div>
     );
 }

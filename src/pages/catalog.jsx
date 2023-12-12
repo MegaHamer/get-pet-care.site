@@ -59,7 +59,7 @@ const Catalog = () => {
                                 </form>
                             </div>
                             <h2 className="row">Размещенные объявления</h2>
-                            <SearchSpaget cards={cards} />
+                            <SearchSpaget cards={cards} paginCount={6} activePage={err.page}/>
                             <Pagination countCards={cards.length} paginCount={6} activePage={err.page}/>
                         </div>
                     </div>

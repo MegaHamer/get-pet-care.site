@@ -3,6 +3,11 @@ import logo from '../img/logo.png';
 import {Link} from "react-router-dom";
 
 const Header = () =>{
+
+	const search = (e)=>{
+		e.preventDefault();
+	}
+
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,7 +23,7 @@ const Header = () =>{
                         current="page" href="index.html">Главная</Link>
 					</li>
 					<li className="nav-item">
-						<Link to={localStorage.getItem("token")==""?"/login":'/cabinet/'+localStorage.getItem("token")} className="nav-link" href="cabinet.html">Личный кабинет</Link>
+						<Link to={(!localStorage.getItem("token") || localStorage.getItem("token")=="")?"/login":'/cabinet/'+localStorage.getItem("token")} className="nav-link" href="cabinet.html">Личный кабинет</Link>
 					</li>
 					<li className="nav-item">
 						<Link to={'/registr'} className="nav-link active" href="registr.html">Регистрация</Link>
@@ -30,7 +35,7 @@ const Header = () =>{
 						<Link to={'/catalog/1'} className="nav-link" href="#">Поиск по объявлениям</Link>
 					</li>
 					</ul>
-					<form className="d-flex">
+					<form onSubmit={search} className="d-flex" noValidate>
 					<input className="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"/>
 					<button className="btn btn-primary primary-color2" type="submit">Поиск</button>
 					</form>

@@ -3,16 +3,19 @@ import '../mysite.css';
 import { Link, useNavigate } from "react-router-dom";
 
 const CardDel = (props) => {
-    console.log(props)
 
     const statuses = { "onModeration": "на рассмотрении", "active": "активный", "wasFound": "хозяин найден", "archive": "в архиве" }
 
     const navigate = useNavigate();
 
+    const deleteOrder = () => {
+        console.log("")
+    }
+
     return (
         <div className="col">
             <div className="card h-100" onClick={()=>navigate("/pet/"+props.data.id,{state:props.data.id})}>
-                <img src={"https://pets.сделай.site" + props.data.photos} className="card-img-top" alt={props.data.alt} />
+                <img src={"https://pets.сделай.site" + props.data.photos} className="card-img-top p-3" alt={props.data.alt} />
                 <div className="card-body">
                     <h5 className="card-title">{props.data.kind}  id: {props.data.id}</h5>
                     <hr />
@@ -24,7 +27,7 @@ const CardDel = (props) => {
                     </p>
                     <div className="btn-cardd">
                         <button className="btn btn-primary primary-color2 text-break">Изменить</button>
-                        <button className="btn btn-primary primary-color2 text-break">Удалить</button>
+                        <button onClick={deleteOrder} className="btn btn-primary primary-color2 text-break">Удалить</button>
                     </div>
                 </div>
             </div>

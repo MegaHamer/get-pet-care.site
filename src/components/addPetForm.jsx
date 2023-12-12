@@ -37,7 +37,7 @@ const AddPetForm = () => {
 
         e.preventDefault();
 
-        console.log("effef")
+        console.log(localStorage.getItem("token"))
 
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
@@ -79,7 +79,7 @@ const AddPetForm = () => {
     })()
 
     return (
-        <div className="reg-window">
+        <div className="container">
             <h2>Добавить объявление</h2>
             <form id="addPetform" className="form-reg needs-validation" onSubmit={submitt} noValidate>
                 <div >

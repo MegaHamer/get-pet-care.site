@@ -6,8 +6,10 @@ const Addpet = () => {
     return ( 
         <div>
             <Header/>
-            <main>
-                <AddPetForm/>
+            <main className="container py-5">
+                <div className="container">
+                    <AddPetForm />
+                </div>
             </main>
             <Footer/>
         </div>

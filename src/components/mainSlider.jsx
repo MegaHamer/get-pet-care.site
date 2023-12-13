@@ -20,7 +20,7 @@ const MainSlider = () => {
         fetch("https://pets.сделай.site/api/pets/slider",reqiestOptions)
         .then (response=>response.json())
         .then (response=>setPets(response))
-        .then(()=>{document.getElementById('spiner').style.display='none'})
+        .then (()=>{document.getElementById('spiner').style.display='none'})
     }
 
     const [pets,setPets] = useState({data: {pets: [] } });

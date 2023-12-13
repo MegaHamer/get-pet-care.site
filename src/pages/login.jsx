@@ -5,9 +5,9 @@ import ModalWin from "../components/modalWindow";
 
 const Login = () => {
     return ( 
-        <div>
+        <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
             <Header/>
-            <main>
+            <main style={{display:"flex",flexDirection:"column",flex:"1 0 auto"}}>
                 <LoginForm/>
             </main>
             <Footer/>

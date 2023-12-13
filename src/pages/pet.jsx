@@ -29,9 +29,9 @@ const Pet = () => {
 
 
     return (
-        <div>
+        <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}> 
             <Header />
-            <main>
+            <main style={{display:"flex",flexDirection:"column",flex:"1 0 auto"}}>
                 <div className="col">
                     <div className="card h-100">
                         <PetSlider photos={[info.data.pet.photos1,info.data.pet.photos2,info.data.pet.photos3]} alt={[info.data.pet.kind]}/>

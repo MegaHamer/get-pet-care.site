@@ -148,6 +148,7 @@ footer{
     width: 60%;
     margin: auto;
     margin-bottom: 1rem!important;
+    margin-top: 1rem!important;
 }
 .reg-add-pet > summary{
     /*list-style: none;*/

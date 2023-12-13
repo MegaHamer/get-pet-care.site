@@ -4,9 +4,9 @@ import RegistrForm from "../components/registrForm";
 
 const Registr = () => {
     return ( 
-        <div>
+        <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
             <Header/>
-            <main>
+            <main style={{display:"flex",flexDirection:"column",flex:"1 0 auto"}}>
                 <RegistrForm/>
             </main>
             <Footer/>

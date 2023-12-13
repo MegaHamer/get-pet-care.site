@@ -4,9 +4,9 @@ import Header from "../components/header";
 
 const Addpet = () => {
     return ( 
-        <div>
+        <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
             <Header/>
-            <main className="container py-5">
+            <main className="container py-5" style={{display:"flex",flexDirection:"column",flex:"1 0 auto"}}>
                 <div className="container">
                     <AddPetForm />
                 </div>

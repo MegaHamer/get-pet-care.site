@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import Pagination from "../components/pagination";
 import SearchSpaget from "../components/searchSpaget";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const Catalog = () => {
 
@@ -41,14 +41,25 @@ const Catalog = () => {
 
     console.log(err);
 
+    // query
+    const par = useSearchParams();
+
+    let descq = par.get;
+    
+    console.log(descq)
+    console.log(window.location.search);
+
+    //быстрый поиск
+    //if ()
+
 
 
 
     return (
-        <div>
+        <div style={{display:"flex",flexDirection:"column",minHeight:"100vh"}}>
             <Header />
-            <main>
-                <section style={{ "backgroundColor": "#eee" }}>
+            <main style={{display:"flex",flexDirection:"column",flex:"1 0 auto"}}>
+                <section style={{ "backgroundColor": "#eee",flex:"1" }}>
                     <div className="container py-5">
                         <div className="row">
                             <div className="row">
@@ -60,7 +71,7 @@ const Catalog = () => {
                             </div>
                             <h2 className="row">Размещенные объявления</h2>
                             <SearchSpaget cards={cards} paginCount={6} activePage={err.page}/>
-                            <Pagination countCards={cards.length} paginCount={6} activePage={err.page}/>
+                            <Pagination countCards={cards.length} paginCount={6} activePage={err.page} navigate={'/catalog/'}/>
                         </div>
                     </div>
                 </section>

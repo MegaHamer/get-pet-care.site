@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "./card";
+import Spiner from "./spiner";
 
 const SearchSpaget = (props) => {
     //[cards, paginCount, activePage]

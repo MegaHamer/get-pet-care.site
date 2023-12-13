@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from 'bootstrap/js/dist/modal';
 import { type } from "@testing-library/user-event/dist/type";
@@ -6,8 +6,6 @@ import { type } from "@testing-library/user-event/dist/type";
 
 const ModalWin = (props) => {
     const navigate = useNavigate();
-
-    
 
     const [inputt,setInputt] = useState(props.inpvalue);
 

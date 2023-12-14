@@ -58,7 +58,7 @@ const Pagination = (props) => {
         pages.push(<li className={"page-item"+(props.activePage == j ? " active ":"")}><p className="page-link" onClick={()=>navigate(path+j+query)}>{j}</p></li>)
     }
     return (
-        <div className="row-center">
+        <div className="d-flex justify-content-center align-items-center py-3">
             <ul className="pagination">
                 <li className="page-item">
                     <p className={"page-link"+(props.activePage<=1?" disabled ":"")} onClick={()=>{ navigate(path+(1)+query)}} aria-label="Предыдущая">

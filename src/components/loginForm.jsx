@@ -55,7 +55,7 @@ const LoginForm = () => {
                     setModalText("Не все поля заполнены верно");
                     setModalType("txt");
                 }
-                showModal(true);
+                showModal();
             })
             .catch(error => console.log('error', error));}
     }
@@ -80,15 +80,13 @@ const LoginForm = () => {
             })
     })()
     const [myModal,setMyModal] = useState(/*new Modal (document.getElementById("Modal"))*/);
-    function showModal (show){
-        if (show){
-            myModal.show();
-        }
-        else{
+    function showModal (){
+        if (myModal._isShown) {
             myModal.hide();
-
-            /*let gg = new Modal.getOrCreateInstance(do)
-            $("#Modal").modal({backdrop:true})*/
+        }
+        else {
+            myModal.show();
+            
         }
     }
     useEffect(()=>{setMyModal(new Modal (document.getElementById("Modal")))},[])

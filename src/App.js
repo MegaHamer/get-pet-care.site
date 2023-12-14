@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path={"/"}element={<MainPage/>}/>
         <Route path={"/main"}element={<MainPage/>}/>
         <Route path={"/login"}element={<Login/>}/>
         <Route path={"/registr"}element={<Registr/>}/>
@@ -18,6 +19,8 @@ function App() {
         <Route path={"/addpet"}element={<Addpet/>}/>
         <Route path={"/catalog/:page/:query"}element={<Catalog/>}/>
         <Route path={"/catalog/:page"}element={<Catalog/>}/>
+        <Route path={"/catalog/order/:page"}element={<Catalog/>}/>
+        <Route path={"/catalog/order/:page/:query"}element={<Catalog/>}/>
         <Route path={"/pet/:id"}element={<Pet/>}/>
       </Routes>
     </div>

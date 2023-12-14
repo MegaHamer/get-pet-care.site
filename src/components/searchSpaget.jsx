@@ -35,7 +35,7 @@ const SearchSpaget = (props) => {
     console.log(cards)*/
 
     return (
-        <div className="row row-cols-1 row-cols-md-3 py-3" id="search-content">
+        <div className="row row-cols-1 row-cols-md-3 position-relative" id="search-content">
             {totalCards}
         </div>
     );

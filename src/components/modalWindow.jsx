@@ -17,6 +17,8 @@ const ModalWin = (props) => {
     }
     )
 
+    let show = props.show
+
     function changeUser (){
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
@@ -43,7 +45,7 @@ const ModalWin = (props) => {
                     
                     let upd = props.update;
                     upd();
-                    let show = props.show
+                    
                     show()
                     
                     //navigate('/cabinet',)
@@ -72,15 +74,17 @@ const ModalWin = (props) => {
             })
     })()
 
+    let deletee = props.delete;
+    
     let bodys = props.type === "input" ? <form className="needs-validation input-group" onSubmit={submt} id="changeForm" noValidate> 
     {props.idd=="phone"? <input pattern="^[\+]?[0-9]{1,12}$" aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue} onChange={(e)=>setInputt(e.target.value)} className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>:
     <input aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue} onChange={(e)=>setInputt(e.target.value)} className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>}
     <button className="btn btn-outline-secondary" type="submit" id="inputGroupText">Сохранить изменения</button>
-    </form> : props.type === "txt" ? props.text_body : "";
+    </form> : (props.type == ( "btn") || props.type == ( "txt") ? props.text_body : "");
     
     let buttons = <div className="modal-footer">
-        <button type="submit" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-        {/*props.type==='input' ? <button form="changeForm" onClick={()=>changeUser()} type="button" className="btn btn-primary">Сохранить изменения</button> :""*/}
+        <button onClick={()=>show()} type="submit" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        {props.type == "btn" &&<button form="changeForm" onClick={()=>deletee()} type="button" className="btn btn-primary">Удалить</button>}
     </div>;
     
 
@@ -93,12 +97,12 @@ const ModalWin = (props) => {
             }
 
 
-            <div className="modal fade" id="Modal" tabIndex="-1" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
+            <div className="modal fade" id={props.modalid ?props.modalid:"Modal"} tabIndex="-1" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="ModalLabel">{props.header}</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                            <button onClick={()=>show()} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                         </div>
                         <div className="modal-body text-wrap text-break">
                             {bodys}

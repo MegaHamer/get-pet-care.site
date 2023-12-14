@@ -20,7 +20,7 @@ const MainSlider = () => {
         fetch("https://pets.сделай.site/api/pets/slider",reqiestOptions)
         .then (response=>response.json())
         .then (response=>setPets(response))
-        .then (()=>{document.getElementById('spiner').style.display='none'})
+        .then (()=>{document.getElementById('spin').style.display='none'})
     }
 
     const [pets,setPets] = useState({data: {pets: [] } });
@@ -47,7 +47,10 @@ const MainSlider = () => {
             </div>
             <div className="carousel-inner">
                 {slides}
-                <Spiner/>
+                <div id="spin">
+                    <Spiner/>
+                </div>
+                
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>

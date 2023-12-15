@@ -39,7 +39,7 @@ const UserInfo = (props) => {
     })
 
     const [myModal, setMyModal] = useState();
-    function showModal(show) {
+    function showModal() {
         if (myModal._isShown) {
             myModal.hide();
         }
@@ -74,7 +74,7 @@ const UserInfo = (props) => {
                 <button onClick={() => clearToken()} className="btn btn-primary primary-color2" style={{ "alignSelf": "flex-end" }}>Выйти</button>
                 <div className="card mb-4" style={{ "height": "94%" }}>
                     <div className="card-body">
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Имя пользователя</p>
                             </div>
@@ -83,27 +83,27 @@ const UserInfo = (props) => {
                             </div>
                         </div>
                         <hr />
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Почта</p>
                             </div>
                             <div className="col-sm-8 rowUser">
                                 <p className="text-muted mb-0  text-break">{props.data.email}</p>
-                                <img onClick={() => { changeInfo("email", "Почта", "Меняем почту") }} className='imgPen' src={pen} />
+                                <img onClick={() => { changeInfo("email", "Почта", "Меняем почту") }} className='imgPen' src={pen} alt="Изменить"/>
                             </div>
                         </div>
                         <hr />
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Телефон</p>
                             </div>
                             <div className="col-sm-8 rowUser">
                                 <p className="text-muted mb-0  text-break">{props.data.phone}</p>
-                                <img onClick={() => changeInfo("phone", "Телефон", "Меняем телефон")} data-bs-target="#Modal" className='imgPen' src={pen} />
+                                <img onClick={() => changeInfo("phone", "Телефон", "Меняем телефон")} data-bs-target="#Modal" className='imgPen' src={pen} alt="Изменить"/>
                             </div>
                         </div>
                         <hr />
-                        <div className="row" style={{ "align-items": "center" }}>
+                        <div className="row" style={{ "alignItems": "center" }}>
                             <div className="col-sm-4">
                                 <p className="mb-0">Дней с нами</p>
                             </div>

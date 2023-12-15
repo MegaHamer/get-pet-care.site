@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import CabinSpaget from "../components/CabinetSpaget";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Pagination from "../components/pagination";
@@ -16,10 +15,10 @@ const Cabinet = () => {
     const [modalHeader, setModalHeader] = useState("Удалить");
     const [modalType, setModalType] = useState("btn");
     const [modalText, setModalText] = useState("Вы уверенны что хотите удалить объявление?");
-    const [field, serField] = useState("eee");
+    const [field, setField] = useState("eee");
     const [inpValue, setInpValue] = useState("");
 
-    const [info, setInfo] = useState({})
+    const [info, setInfo] = useState({registrationDate:0})
 
     const navigate = useNavigate();
 
@@ -62,7 +61,7 @@ const Cabinet = () => {
             .then(response => {
                 setPets(response);
                 console.log(response);
-                if (response.data.orders.length==0) document.getElementById("noth").classList.remove("d-none")
+                if (response.data.orders.length===0) document.getElementById("noth").classList.remove("d-none")
                 else document.getElementById("noth").classList.add("d-none");
             })
             .then(() => { document.getElementById('spin').style.display = 'none' })
@@ -77,7 +76,7 @@ const Cabinet = () => {
     let reload = ()=>loadUserCards(pets, setPets);
 
     const cards = pets.data.orders.map((pet, index) => {
-        return <CardDel reload={reload} setId={setIdCard} data={pet} modal={showModal} />
+        return <CardDel key={"card"+index} reload={reload} setId={setIdCard} data={pet} modal={showModal} />
     })
 
 

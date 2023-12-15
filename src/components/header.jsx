@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from '../img/logo.png';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 const Header = () => {
 
@@ -15,7 +15,7 @@ const Header = () => {
 	let search = (e) => {
 		e.preventDefault();
 		let qu = document.getElementById("fast-search").value;
-		navigate('/catalog/1' + (qu != "" ? '/query=' + qu : ""));
+		navigate('/catalog/1' + (qu !== "" ? '/query=' + qu : ""));
 	}
 
 
@@ -61,11 +61,10 @@ const Header = () => {
 					<div className="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 							<li className="nav-item">
-								<Link to={'/main'} className={"nav-link " + (position(path, 'main') ? "active" : "")} aria-
-									current="page" href="index.html">Главная</Link>
+								<Link to={'/main'} className={"nav-link " + (position(path, 'main') ? "active" : "")} aria-current="page" href="index.html">Главная</Link>
 							</li>
 							<li className="nav-item">
-								<Link to={(!localStorage.getItem("token") || localStorage.getItem("token") == "") ? "/login" : '/cabinet/1'} className={"nav-link " + (position(path, 'cabinet') ? "active" : "")} href="cabinet.html">Личный кабинет</Link>
+								<Link to={(!localStorage.getItem("token") || localStorage.getItem("token") === "") ? "/login" : '/cabinet/1'} className={"nav-link " + (position(path, 'cabinet') ? "active" : "")} href="cabinet.html">Личный кабинет</Link>
 							</li>
 							<li className="nav-item">
 								<Link to={'/registr'} className={"nav-link " + (position(path, 'registr') || position(path, 'login') ? "active" : "")} href="registr.html">Регистрация</Link>

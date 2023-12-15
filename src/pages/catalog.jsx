@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import Card from "../components/card";
-import FindPet from "../components/findPet";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Pagination from "../components/pagination";
 import SearchSpaget from "../components/searchSpaget";
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Spiner from "../components/spiner";
 
 const Catalog = () => {
@@ -25,7 +24,7 @@ const Catalog = () => {
 
     
 
-    function request(pets, setPets, query="") { // получаем животных
+    function request( setPets, query="") { // получаем животных
 
         let requestOptions = {  
             method: 'GET'
@@ -36,7 +35,7 @@ const Catalog = () => {
             fetch("https://pets.сделай.site/api/search/order?"+(err.query ? err.query : ""), requestOptions)
             .then(response => response.json())
             .then(response => {setPets(response)
-                if (response.data.orders.length==0) document.getElementById("noth").classList.remove("d-none")
+                if (response.data.orders.length===0) document.getElementById("noth").classList.remove("d-none")
             else document.getElementById("noth").classList.add("d-none")})
             .then(() => { document.getElementById('spin').style.display = 'none' })
         }
@@ -45,7 +44,7 @@ const Catalog = () => {
             fetch("https://pets.сделай.site/api/search?"+(err.query ? err.query : ""), requestOptions)
             .then(response => response.json())
             .then(response => {setPets(response)
-                if (response.data.orders.length==0) document.getElementById("noth").classList.remove("d-none")
+                if (response.data.orders.length===0) document.getElementById("noth").classList.remove("d-none")
                 else document.getElementById("noth").classList.add("d-none")})
             .then(() => { document.getElementById('spin').style.display = 'none' })
         }
@@ -57,21 +56,21 @@ const Catalog = () => {
         if (position(path,"/catalog/order/")){
         let qu1 = document.getElementById("search-for-kind").value;
         let qu2 = document.getElementById("search-for-dist").value;
-            navigate("/catalog/order/1/"+(qu2!=""?"district="+qu2:"")+(qu1!="" && qu2!=""?"&":"")+(qu1!=""?"kind="+qu1:""))
+            navigate("/catalog/order/1/"+(qu2!==""?"district="+qu2:"")+(qu1!=="" && qu2!==""?"&":"")+(qu1!==""?"kind="+qu1:""))
         }
         else{
             let qu = document.getElementById("search-for-desc").value;
-            navigate('/catalog/1'+(qu!=""?'/query='+qu:""));
+            navigate('/catalog/1'+(qu!==""?'/query='+qu:""));
         }
         
     }
 
     const [pets, setPets] = useState({ data: { orders: [] } }); // все животные
 
-    useEffect(() => { request(pets, setPets); }, [path]) 
+    useEffect(() => { request( setPets) }, [path]) 
 
-    const cards =[] = pets.data.orders.map((pet, index) => {
-        return <Card data={pet} index={index} />
+    const cards = pets.data.orders.map((pet, index) => {
+        return <Card data={pet} key={"card"+index} />
     });
 
     console.log(cards)
@@ -100,7 +99,7 @@ const Catalog = () => {
                                     <h3>Объявлений не найдено</h3>
                                 </div>
                             <SearchSpaget cards={cards} paginCount={6} activePage={err.page}/>
-                            <Pagination countCards={cards.length} paginCount={6} activePage={err.page} navigate={'/catalog/'} query={err.query}/>
+                            <Pagination countCards={cards.length} paginCount={6} activePage={err.page} navigate={position(path,"/catalog/order/")?"/catalog/order/":"/catalog/"} query={err.query}/>
                         </div>
                     </div>
                 </section>

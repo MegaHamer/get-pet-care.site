@@ -46,8 +46,8 @@ const RegistrForm = () => {
                 .then(response => response.status)
                 .then(result => {
                     console.log(result);
-                    if (result==204) {
-                        localStorage.setItem("token","")
+                    if (result == 204) {
+                        localStorage.setItem("token", "")
                         setModalHeader("Успех");
                         setModalText("Вы зарегистрировались.");
                         setModalType("txt");
@@ -113,11 +113,20 @@ const RegistrForm = () => {
                 <input name="name" className="form-control" type="text" placeholder="Имя пользователя" required />
                 <input name="phone" className="form-control" type="tel" placeholder="Телефон" required />
                 <input name="email" className="form-control" type="email" placeholder="Почта" required />
-                <input name="password" className="form-control" type="password" placeholder="Пароль" required pattern="(?=^.{7,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
-                <input name="password_confirmation" className="form-control" type="password" placeholder="Подтверждение пароля" required pattern="(?=^.{7,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
+                <input name="password" className="form-control" type="password" placeholder="Пароль" required pattern="(?=^.{7,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" />
+                <div className="invalid-feedback">
+                    Пароль состоит не менее из 7 символов. Обязательно должны присутствовать 1 цифра, 1 строчная, 1 зашлваная буквы.
+                </div>
+                <input name="password_confirmation" className="form-control" type="password" placeholder="Подтверждение пароля" required pattern="(?=^.{7,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" />
+                <div className="invalid-feedback">
+                    Пароль состоит не менее из 7 символов. Обязательно должны присутствовать 1 цифра, 1 строчная, 1 зашлваная буквы.
+                </div>
                 <div>
                     <input name="confirm" type="checkbox" id="sogl" required />
                     <label htmlFor="sogl">Согласие на обработку персональных данных</label>
+                    <div className="invalid-feedback">
+                       Это обязательное поле.
+                    </div>
                 </div>
                 <button className="btn primary-color2 btn-primary m-auto">Регистрация</button>
             </form>

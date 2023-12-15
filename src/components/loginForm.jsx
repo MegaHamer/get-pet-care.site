@@ -37,7 +37,7 @@ const LoginForm = () => {
                 if ('data' in result) {
                     localStorage.setItem("token", result.data.token);
                     setModalHeader("Успех");
-                    setModalText("Вы вошли. Ваш токен: " + localStorage.getItem("token"));
+                    setModalText("Вы вошли.");
                     setModalType("txt");
                     let myModal = document.getElementById("Modal")
                     myModal.addEventListener('hidden.bs.modal', function (event) {

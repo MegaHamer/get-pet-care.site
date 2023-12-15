@@ -1,15 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Modal from 'bootstrap/js/dist/modal';
-import { type } from "@testing-library/user-event/dist/type";
-
 
 const ModalWin = (props) => {
-    const navigate = useNavigate();
-
-    const [inputt,setInputt] = useState(props.inpvalue);
-
-    let innn = props.inpvalue
 
     const submt = ((e)=>{
         e.preventDefault();
@@ -17,7 +7,8 @@ const ModalWin = (props) => {
     }
     )
 
-    let show = props.show
+    let show = () => props.show
+    
 
     function changeUser (){
         var myHeaders = new Headers();
@@ -45,9 +36,9 @@ const ModalWin = (props) => {
                     
                     let upd = props.update;
                     upd();
-                    
+                    console.log("tt")
                     show()
-                    
+                    console.log("tt")
                     //navigate('/cabinet',)
                 }
             })
@@ -55,7 +46,6 @@ const ModalWin = (props) => {
     }
 
     (function () {
-        'use strict'
 
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
@@ -77,14 +67,14 @@ const ModalWin = (props) => {
     let deletee = props.delete;
     
     let bodys = props.type === "input" ? <form className="needs-validation input-group" onSubmit={submt} id="changeForm" noValidate> 
-    {props.idd=="phone"? <input pattern="^[\+]?[0-9]{1,12}$" aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue} onChange={(e)=>setInputt(e.target.value)} className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>:
-    <input aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue} onChange={(e)=>setInputt(e.target.value)} className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>}
+    {props.idd==="phone"? <input pattern="^[\+]?[0-9]{1,12}$" aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue} className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>:
+    <input aria-describedby="inputGroupText" type={props.idd === "email" ? "email" : "text"} defaultValue={props.inpvalue}  className="form-control" id="modalInput" name={props.idd} placeholder={props.text_body} required/>}
     <button className="btn btn-outline-secondary" type="submit" id="inputGroupText">Сохранить изменения</button>
-    </form> : (props.type == ( "btn") || props.type == ( "txt") ? props.text_body : "");
+    </form> : (props.type === ( "btn") || props.type === ( "txt") ? props.text_body : "");
     
     let buttons = <div className="modal-footer">
         <button onClick={()=>show()} type="submit" className="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-        {props.type == "btn" &&<button form="changeForm" onClick={()=>deletee()} type="button" className="btn btn-primary">Удалить</button>}
+        {props.type === "btn" &&<button form="changeForm" onClick={()=>deletee()} type="button" className="btn btn-primary">Удалить</button>}
     </div>;
     
 

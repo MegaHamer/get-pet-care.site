@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import dog1 from '../img/animals/dog1.png';
-import dog2 from '../img/animals/dog2.png';
-import cat1 from '../img/animals/cat1.png';
-import cat2 from '../img/animals/cat2.png';
 import '../mysite.css';
 import Slide from "./slide";
 import Spiner from "./spiner";
@@ -11,7 +7,7 @@ import Spiner from "./spiner";
 
 const MainSlider = () => {
     
-    function request(pets,setPets){
+    function request(setPets){
 
         let reqiestOptions = {
             method:'GET'
@@ -25,17 +21,18 @@ const MainSlider = () => {
 
     const [pets,setPets] = useState({data: {pets: [] } });
     
-    useEffect(()=>request(pets,setPets),[])
+    useEffect(()=>request(setPets),[])
 
     const slides = pets.data.pets.map((pet,index)=>{
-        if (index == 0) return <Slide data={pet} active={true}/>
-        return <Slide data={pet} />
+        console.log(<Slide data={pet} active={true} key={'slide'+index}/>)
+        if (index === 0) return <Slide data={pet} active={true} key={'slide'+ index}/>
+        return <Slide key={'slide'+index} data={pet} />
     })
 
     const captions = pets.data.pets.map((pet,index)=>{
-        if (index == 0)
-        return <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={index} className={index == 0? " active " : ""} aria-current="true" aria-label={"Slide "+(index+1)}></button>
-        return <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={index} aria-label={"Slide "+(index+1)}></button>
+        if (index === 0)
+        return <button key={'button'+index} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={index} className={index === 0? " active " : ""} aria-current="true" aria-label={"Slide "+(index+1)}></button>
+        return <button key={'button'+index} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={index} aria-label={"Slide "+(index+1)}></button>
     })
 
     

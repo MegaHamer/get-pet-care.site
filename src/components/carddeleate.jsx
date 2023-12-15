@@ -62,7 +62,7 @@ const CardDel = (props) => {
             redirect: 'follow'
         };
 
-        fetch("https://pets.сделай.site/api/pets/230", requestOptions)
+        fetch("https://pets.сделай.site/api/pets/"+props.data.id, requestOptions)
             .then(response => response.text())
             .then(result => {
                 console.log(result);
@@ -96,7 +96,7 @@ const CardDel = (props) => {
                         <hr />
                         <p className="card-text">Описание: {props.data.description} </p>
                         <p className="card-text">  Место нахожения: {props.data.district} </p>
-                        <p className>
+                        <p>
                             Статус: {statuses[status]} <br />
                             Дата публикации: {props.data.date}
                         </p>

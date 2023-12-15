@@ -84,7 +84,7 @@ const AddPetForm = () => {
             <form id="addPetform" className="form-reg needs-validation" onSubmit={submitt} noValidate>
                 <div >
                     <label htmlFor="nameinp" className="form-label">Имя</label>
-                    <input name="name" id="nameinp" className="form-control" type="text" placeholder="Имя" pattern="^[а-яА-Я -]{18}" required defaultValue={user.name} />
+                    <input name="name" id="nameinp" className="form-control" type="text" placeholder="Имя" pattern="^[а-яА-ЯЁё \-]{1,18}" required defaultValue={user.name} />
                 </div>
                 <div>
                     <label htmlFor="telinp" className="form-label">Телефон</label>
@@ -140,6 +140,9 @@ const AddPetForm = () => {
                 <div>
                     <input name="confirm" type="checkbox" id="sogl" required />
                     <label htmlFor="sogl">Согласие на обработку персональных данных</label>
+                    <div className="invalid-feedback">
+                        Это обязательное поле.
+                    </div>
                 </div>
                 <button className="btn primary-color2 btn-primary" type="submit">Регистрация</button>
             </form>
